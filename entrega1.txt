@@ -1,0 +1,2 @@
+Mandar o index.js no GitHub e o modelo entidade relacionamento
+	pelo menos 1 commit do código(um hello word)
