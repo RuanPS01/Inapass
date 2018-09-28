@@ -73,6 +73,6 @@ function retrieveUUIDFromCouchDB(){
   console.log('UUID got: '+body);
   output_json = JSON.parse(body);
   console.log(output_json.uuids[0]);
-  return output_json;
+  return output_json.uuids;
 });
 }
