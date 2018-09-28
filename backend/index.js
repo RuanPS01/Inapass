@@ -1,8 +1,10 @@
 var express = require('express');
-var request = require('request')
+var request = require('request');
+const axios = require('axios');
 var server = express();
 var credentials = require('./credentials.json');
 var http = require('http');
+var utils = require('./utils')
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
 
@@ -40,39 +42,108 @@ server.listen(3000, function (req, res) {
   });
 });
 
-server.post('/newEntry', function(req, res){
-  console.log("New entry request.");
-  console.log(req.body);
-  output = req.body
-  uuid = retrieveUUIDFromCouchDB();
-  build_input = {
-    "date": "20/09/2018",
-    "pwd": "09b48f7ab93",
-    "name":"AWebsite",
-    "description": "Senha do meu site"
-  }
-  //Realiza o request para inclusão do documento no BD
-  request({
-    url: 'http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+uuid.uuids[0],
-    method: "PUT",
-    json: true,   // <--Very important!!!
-    body: build_input
-  }, function (error, response, body){
-    console.log('PUT response: ');
-    console.log(response.body);
+//deleteEntry?docId=(id)
+//payload: (nada)
+server.post('/deleteEntry', function(req, res){
+  console.log("Delete request. Retrieving data..");
+  axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+req.query.docId)
+  .then(function (response) {
+    console.log(response.data);
+
+    //Send the delete command to the DB based on latest revision
+    axios.delete('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data._id+'?rev='+response.data._rev)
+    .then(function(response){
+      console.log('[couchdb]Document deletion is complete! Report: '+response.data.ok)
+    })
+    .catch(function error(){
+      console.log(error);
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
   });
+
+  res.send("OK")
+});
+
+//updateEntry?docId=(id)
+//payload: json do doc atualizado
+server.post('/updateEntry', function(req, res){
+  console.log("Update request. Retrieving data...");
+  var recData = req.body
+  axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+req.query.docId)
+  .then(function (response) {
+    axios.put('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data._id, {recData, '_rev':response.data._rev})
+    .then(function (response){
+      console.log("[couchdb]Succesfully updated document!");
+    })
+    .catch(function (error){
+      console.log(error);
+    });
+  })
 
   res.send("OK");
 });
 
-function retrieveUUIDFromCouchDB(){
-  //TODO: DITCH REQUESTS IN FAVOR OF AXIOS
-  request('http://'+bdAddr+'/_uuids', function (error, response, body) {
-  console.log('error:', error)
-  console.log('statusCode:', response && response.statusCode); // código de status
-  console.log('UUID got: '+body);
-  output_json = JSON.parse(body);
-  console.log(output_json.uuids[0]);
-  return output_json.uuids;
+//listEntry
+server.get('/listEntry', function(req, res){
+  console.log('Database docs have been queried.');
+  var docs;
+  axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb/_design/pwds/_view/all')
+  .then(function (response){
+    console.log('[couchdb] Passbase requested!');
+    var docs = response.data.rows;
+
+    //monta resposta
+    res.setHeader('Content-Type', 'application/json');
+    console.log('Sent docs.');
+    res.json(docs);
+  });
+})
+
+//newEntry
+//payload: json do doc a ser inserido no banco de dados
+server.post('/newEntry', function(req, res){
+  console.log("New entry request. Generating database info..");
+  console.log(req.body);
+  output = req.body
+
+  //Todo: receive request as formatted body from frontend
+  build_input = {
+    "date": utils.generateDateString(),
+    "pwd": utils.generateString(),
+    "name":"AWebsite",
+    "description": "Senha do meu site"
+  }
+  console.log('Dispatching.');
+  uuid = databasePUT(build_input);
+
+  res.send("OK");
 });
+
+async function databasePUT(build_input){
+  await axios.get('http://'+bdAddr+'/_uuids')
+    .then(function (response) {
+      console.log('[couchdb]UUID Get! > '+response.data.uuids[0]);
+
+      //Realiza o request para inclusão do documento no BD
+      request({
+        url: 'http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data.uuids[0],
+        method: "PUT",
+        json: true,   // <--Very important!!!
+        body: build_input
+      }, function (error, response, body){
+        console.log('[couchdb]PUT response: '+response.body.ok);
+        console.log(response.body);
+      });
+
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+    return NaN;
 }
