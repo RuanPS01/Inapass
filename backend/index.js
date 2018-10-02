@@ -8,7 +8,7 @@ var utils = require('./utils')
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
 
-const bdAddr = "192.168.100.115:5984/";
+const bdAddr = "127.0.0.1:5984/";
 
 server.all('*',function(req,res,next)
 {
@@ -31,7 +31,7 @@ server.listen(3000, function (req, res) {
   console.log(`IRIS is operating in ${server.get('env')} mode at port 3000`)
   console.log("Checking DB connection...");
 
-  var rq = http.get("http://192.168.100.115:5984/passdb", function(res){
+  var rq = http.get("http://localhost:5984/passdb", function(res){
     console.log("DB status code: "+res.statusCode);
     if(res.statusCode !== 200){
       console.log("Database connection failed. Exiting..");
@@ -89,6 +89,7 @@ server.post('/updateEntry', function(req, res){
 server.get('/listEntry', function(req, res){
   console.log('Database docs have been queried.');
   var docs;
+
   axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb/_design/pwds/_view/all')
   .then(function (response){
     console.log('[couchdb] Passbase requested!');
@@ -98,6 +99,9 @@ server.get('/listEntry', function(req, res){
     res.setHeader('Content-Type', 'application/json');
     console.log('Sent docs.');
     res.json(docs);
+  })
+  .catch(function (error){
+    console.log(error);
   });
 })
 
