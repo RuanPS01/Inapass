@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-        function expand(){
-            $('table').on('click', 'tr.parent .fa-chevron-down', function(){
-            $(this).closest('tbody').toggleClass('open');});
-        }
-    </script>
+		function expand(){
+			$('table').on('click', 'tr.parent .fa-chevron-down', function(){
+			$(this).closest('tbody').toggleClass('open');});
+		}
+	</script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -25,6 +25,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="js/table.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -38,6 +39,29 @@
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
+					<button class="button" onclick="openForm()"><span>Cadastrar </span></button>
+					<button class="button"><span>Editar </span></button>
+					<button class="button" onclick="confirmation()"><span>Excluir </span></button>
+
+					<div class="form-popup" id="myForm">
+						<form action="/action_page.php" class="form-container">
+							<h2>Nova conta</h2>
+							<label for="email"><b>Site de Origem</b></label>
+							<input type="text" placeholder="Ex: battle.net" name="email" required>
+							
+							<label for="email"><b>Nome de Usuário</b></label>
+							<input type="text" placeholder="Ex: Sulunia" name="email" required>
+
+							<label for="psw"><b>Password</b></label>
+							<input type="password" placeholder="Ex: senha1234" name="psw" required>
+						 
+							<button type="submit" class="btn">Cadastrar</button>
+							<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
+						</form>
+					</div>
+
+					
+
 				<div class="table100">
 					<table>
 						<thead>
@@ -53,13 +77,13 @@
 									<td class="column1">Blizzard</td>
 									<td class="column2">DonPedronNurf</td>
 									<td href="https://www.blizzard.com/pt-br/" class="column3">https://www.blizzard.com/pt-br/</td>
-                  <td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
+                  					<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
 								</tr>
 								<tr class="cchild">
 									<td class="column1">Senha:</td>
 									<td class="column2">200397</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">Blizzard</td>
@@ -67,11 +91,11 @@
 									<td class="column3">https://www.blizzard.com/pt-br/</td>
 									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
 								</tr>
-								<tr class="cchild">
+								<tr class='cchild'>
 									<td class="column1">Senha:</td>
 									<td class="column2">200392</td>
 									<td class="column3">https://www.blizzard.com/pt-br/</td>
-                                    <td></td>
+                                    <td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">Facebook</td>
@@ -83,7 +107,7 @@
 									<td class="column1">Senha: </td>
 									<td class="column2">200390</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">Orkut</td>
@@ -95,7 +119,7 @@
 									<td class="column1">Senha: </td>
 									<td class="column2">200388</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">LevelUp</td>
@@ -107,7 +131,7 @@
 									<td class="column1">Senha: </td>
 									<td class="column2">200386</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">Osu</td>
@@ -119,7 +143,7 @@
 									<td class="column1">Senha: </td>
 									<td class="column2">200388</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 								<tr class="parent">
 									<td class="column1">Google</td>
@@ -131,7 +155,7 @@
 									<td class="column1">Senha: </td>
 									<td class="column2">200386</td>
 									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td></td>
+									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
 								</tr>
 
 						</tbody>

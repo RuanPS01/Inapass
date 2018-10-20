@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require('request');
 const axios = require('axios');
+var path = require('path');
 var server = express();
 var credentials = require('./credentials.json');
 var http = require('http');
@@ -24,7 +25,9 @@ server.all('*',function(req,res,next)
 });
 
 server.get('/', function(req, res) {
-  res.send("AYY HELLLOUUU WOOOORLD WOOHOOO EYEYEYok.")
+  res.sendFile('app/views/tableHome/tableHome.html', "../");
+  //res.sendFile(path.resolve('../app/views/tableHome/tableHome.html'));
+  //res.send("<h1>lalallalal</h1>");
 });
 
 server.listen(3000, function (req, res) {
