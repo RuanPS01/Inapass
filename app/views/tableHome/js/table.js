@@ -8,6 +8,7 @@ function openForm() {
 }
 
 function closeForm() {
+
   document.getElementById("myForm").style.display = "none";
 }
 
@@ -22,7 +23,18 @@ function confirmation() {
   console.log("Confirmar? -> "+ txt);
 }
  
-function EXEMPLE(siteOrigem, nameUser, linkSite, senhaUser, descricao) { /*change*/
+function getNewRegister(siteOrigem, nameUser, linkSite, senhaUser, descricao) { /*change*/
+  var siteOrigem = document.getElementById("site").textContent;
+  var nameUser = document.getElementById("user").textContent;
+  var linkSite = document.getElementById("linkSite").textContent;
+  var senhaUser = document.getElementById("site").textContent;
+  var descricao = document.getElementById("site").textContent;
+  
+  console.log("Site: "+siteOrigem);
+  console.log("User: "+nameUser);
+  console.log("Link: "+linkSite);
+  console.log("Senha: "+senhaUser);
+  console.log("Descrição: "+descricao);
   var $content =  
   "<tr class='parent'>"+
     "<td class='column1'>"+siteOrigem+"</td>"+

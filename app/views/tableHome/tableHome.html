@@ -44,18 +44,24 @@
 					<button class="button" onclick="confirmation()"><span>Excluir </span></button>
 
 					<div class="form-popup" id="myForm">
-						<form action="/action_page.php" class="form-container">
+						<form class="form-container">
 							<h2>Nova conta</h2>
-							<label for="email"><b>Site de Origem</b></label>
-							<input type="text" placeholder="Ex: battle.net" name="email" required>
+							<label id="site" for="email"><b>Nome do site de Origem</b></label>
+							<input type="text" placeholder="Ex: Blizzard" required>
 							
-							<label for="email"><b>Nome de Usuário</b></label>
-							<input type="text" placeholder="Ex: Sulunia" name="email" required>
+							<label id="site" for="email"><b>Link do site de Origem</b></label>
+							<input type="text" placeholder="Ex: battle.net" required>
+							
+							<label id="user" for="email"><b>Nome de Usuário</b></label>
+							<input type="text" placeholder="Ex: Sulunia" required>
 
-							<label for="psw"><b>Password</b></label>
-							<input type="password" placeholder="Ex: senha1234" name="psw" required>
+							<label id="pass" for="psw"><b>Password</b></label>
+							<input type="password" placeholder="Ex: senha1234" required>
+
+							<label id="pass" for="psw"><b>Descrição</b></label>
+							<input type="text" placeholder="Ex: Site de Jogos" required>
 						 
-							<button type="submit" class="btn">Cadastrar</button>
+							<button type="submit" class="btn" onclick="getNewRegister()">Cadastrar</button>
 							<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
 						</form>
 					</div>
