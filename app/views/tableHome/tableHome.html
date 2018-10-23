@@ -7,7 +7,7 @@
     <script>
 		function expand(){
 			$('table').on('click', 'tr.parent .fa-chevron-down', function(){
-			$(this).closest('tbody').toggleClass('open');});
+			$(this).closest('tbody').toggle;});
 		}
 	</script>
 <!--===============================================================================================-->
@@ -40,7 +40,7 @@
 		<div class="container-table100">
 			<div class="wrap-table100">
 					<button class="button" onclick="openForm()"><span>Cadastrar </span></button>
-					<button class="button"><span>Editar </span></button>
+					<button class="button" onclick="openFormEdit()"><span>Editar </span></button>
 					<button class="button" onclick="confirmation()"><span>Excluir </span></button>
 
 					<div class="form-popup" id="myForm">
@@ -63,6 +63,29 @@
 						 
 							<button type="submit" class="btn" onclick="getNewRegister()">Cadastrar</button>
 							<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
+						</form>
+					</div>
+
+					<div class="form-popup" id="myFormEdit">
+						<form class="form-container">
+							<h2>Edição de conta</h2>
+							<label id="site" for="email"><b>Nome do site de Origem</b></label>
+							<input type="text" placeholder="Ex: Blizzard" required>
+							
+							<label id="site" for="email"><b>Link do site de Origem</b></label>
+							<input type="text" placeholder="Ex: battle.net" required>
+							
+							<label id="user" for="email"><b>Nome de Usuário</b></label>
+							<input type="text" placeholder="Ex: Sulunia" required>
+
+							<label id="pass" for="psw"><b>Password</b></label>
+							<input type="password" placeholder="Ex: senha1234" required>
+
+							<label id="pass" for="psw"><b>Descrição</b></label>
+							<input type="text" placeholder="Ex: Site de Jogos" required>
+						 
+							<button type="submit" class="btn" onclick="getNewRegister()">Alterar</button>
+							<button type="button" class="btn cancel" onclick="closeFormEdit()">Fechar Janela</button>
 						</form>
 					</div>
 

@@ -7,8 +7,20 @@ function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
 
-function closeForm() {
+function openFormEdit() {
+  if(true){
+    document.getElementById("myFormEdit").style.display = "block";
+  }else{
+    alert("Selecione um cadastro!");
+  }
+  
+}
 
+function closeFormEdit() {
+  document.getElementById("myFormEdit").style.display = "none";
+}
+
+function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
