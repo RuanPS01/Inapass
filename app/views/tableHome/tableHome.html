@@ -1,95 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>TableTest</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-		function expand(){
-			$('table').on('click', 'tr.parent .fa-chevron-down', function(){
-			$(this).closest('tbody').toggle;});
-		}
-	</script>
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script src="js/table.js"></script>
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
 </head>
+
 <body>
 	<div id='cssmenu'>
-	<ul>
-	   <li class='active'><a href='#'>Tabela Principal</a></li>
-	   <li><a href='about.html'>Sobre</a></li>
-	   <li><a href='../index.html'>Sair</a></li>
-	</ul>
+		<ul>
+			<li class='active'><a href='#'>Tabela Principal</a></li>
+			<li><a href='about.html'>Sobre</a></li>
+			<li><a href='../index.html'>Sair</a></li>
+		</ul>
 	</div>
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
-					<button class="button" onclick="openForm()"><span>Cadastrar </span></button>
-					<button class="button" onclick="openFormEdit()"><span>Editar </span></button>
-					<button class="button" onclick="confirmation()"><span>Excluir </span></button>
+				<button class="button" onclick="openForm()"><span>Cadastrar </span></button>
+				<button class="button" onclick="openFormEdit()"><span>Editar </span></button>
+				<button class="button" onclick="confirmation()"><span>Excluir </span></button>
 
-					<div class="form-popup" id="myForm">
-						<form class="form-container">
-							<h2>Nova conta</h2>
-							<label id="site" for="email"><b>Nome do site de Origem</b></label>
-							<input type="text" placeholder="Ex: Blizzard" required>
-							
-							<label id="site" for="email"><b>Link do site de Origem</b></label>
-							<input type="text" placeholder="Ex: battle.net" required>
-							
-							<label id="user" for="email"><b>Nome de Usuário</b></label>
-							<input type="text" placeholder="Ex: Sulunia" required>
+				<div class="form-popup" id="myForm">
+					<form class="form-container">
+						<h2>Nova conta</h2>
+						<label id="site" for="email"><b>Nome do site de Origem</b></label>
+						<input type="text" placeholder="Ex: Blizzard" required>
 
-							<label id="pass" for="psw"><b>Password</b></label>
-							<input type="password" placeholder="Ex: senha1234" required>
+						<label id="site" for="email"><b>Link do site de Origem</b></label>
+						<input type="text" placeholder="Ex: battle.net" required>
 
-							<label id="pass" for="psw"><b>Descrição</b></label>
-							<input type="text" placeholder="Ex: Site de Jogos" required>
-						 
-							<button type="submit" class="btn" onclick="getNewRegister()">Cadastrar</button>
-							<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
-						</form>
-					</div>
+						<label id="user" for="email"><b>Nome de Usuário</b></label>
+						<input type="text" placeholder="Ex: Sulunia" required>
 
-					<div class="form-popup" id="myFormEdit">
-						<form class="form-container">
-							<h2>Edição de conta</h2>
-							<label id="site" for="email"><b>Nome do site de Origem</b></label>
-							<input type="text" placeholder="Ex: Blizzard" required>
-							
-							<label id="site" for="email"><b>Link do site de Origem</b></label>
-							<input type="text" placeholder="Ex: battle.net" required>
-							
-							<label id="user" for="email"><b>Nome de Usuário</b></label>
-							<input type="text" placeholder="Ex: Sulunia" required>
+						<label id="pass" for="psw"><b>Password</b></label>
+						<input type="password" placeholder="Ex: senha1234" required>
 
-							<label id="pass" for="psw"><b>Password</b></label>
-							<input type="password" placeholder="Ex: senha1234" required>
+						<label id="pass" for="psw"><b>Descrição</b></label>
+						<input type="text" placeholder="Ex: Site de Jogos" required>
 
-							<label id="pass" for="psw"><b>Descrição</b></label>
-							<input type="text" placeholder="Ex: Site de Jogos" required>
-						 
-							<button type="submit" class="btn" onclick="getNewRegister()">Alterar</button>
-							<button type="button" class="btn cancel" onclick="closeFormEdit()">Fechar Janela</button>
-						</form>
-					</div>
+						<button type="submit" class="btn" onclick="getNewRegister()">Cadastrar</button>
+						<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
+					</form>
+				</div>
 
-					
+				<div class="form-popup" id="myFormEdit">
+					<form class="form-container">
+						<h2>Edição de conta</h2>
+						<label id="site" for="email"><b>Nome do site de Origem</b></label>
+						<input type="text" placeholder="Ex: Blizzard" required>
+
+						<label id="site" for="email"><b>Link do site de Origem</b></label>
+						<input type="text" placeholder="Ex: battle.net" required>
+
+						<label id="user" for="email"><b>Nome de Usuário</b></label>
+						<input type="text" placeholder="Ex: Sulunia" required>
+
+						<label id="pass" for="psw"><b>Password</b></label>
+						<input type="password" placeholder="Ex: senha1234" required>
+
+						<label id="pass" for="psw"><b>Descrição</b></label>
+						<input type="text" placeholder="Ex: Site de Jogos" required>
+
+						<button type="submit" class="btn" onclick="getNewRegister()">Alterar</button>
+						<button type="button" class="btn cancel" onclick="closeFormEdit()">Fechar Janela</button>
+					</form>
+				</div>
+
+
 
 				<div class="table100">
 					<table>
@@ -102,93 +99,95 @@
 							</tr>
 						</thead>
 						<tbody>
-								<tr class="parent">
-									<td class="column1">Blizzard</td>
-									<td class="column2">DonPedronNurf</td>
-									<td href="https://www.blizzard.com/pt-br/" class="column3">https://www.blizzard.com/pt-br/</td>
-                  					<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha:</td>
-									<td class="column2">200397</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">Blizzard</td>
-									<td class="column2">Sulunia</td>
-									<td class="column3">https://www.blizzard.com/pt-br/</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class='cchild'>
-									<td class="column1">Senha:</td>
-									<td class="column2">200392</td>
-									<td class="column3">https://www.blizzard.com/pt-br/</td>
-                                    <td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">Facebook</td>
-									<td class="column2">Pedro Polez</td>
-									<td class="column3">https://www.facebook.com/pedro.polez</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha: </td>
-									<td class="column2">200390</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">Orkut</td>
-									<td class="column2">Polez</td>
-									<td class="column3">http://e-orkut.com</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha: </td>
-									<td class="column2">200388</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">LevelUp</td>
-									<td class="column2">Sulunia</td>
-									<td class="column3">https://minhaconta.levelupgames.com.br/web</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha: </td>
-									<td class="column2">200386</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">Osu</td>
-									<td class="column2">200389</td>
-									<td class="column3">https://osu.ppy.sh/home</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha: </td>
-									<td class="column2">200388</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
-								<tr class="parent">
-									<td class="column1">Google</td>
-									<td class="column2">200387</td>
-									<td class="column3">https://accounts.google.com/signin/v2/identifier</td>
-									<td onclick="expand()"><i class="fa fa-chevron-down"></i></td>
-								</tr>
-								<tr class="cchild">
-									<td class="column1">Senha: </td>
-									<td class="column2">200386</td>
-									<td class="column3">Obs: Descrição de Obserdação</td>
-									<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
-								</tr>
+							<tr class="parent">
+								<td class="column1">Blizzard</td>
+								<td class="column2">DonPedronNurf</td>
+								<td href="https://www.blizzard.com/pt-br/" class="column3">https://www.blizzard.com/pt-br/</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class="cchild child">
+								<td class="column1">Senha:</td>
+								<td class="column2">200397</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">Blizzard</td>
+								<td class="column2">Sulunia</td>
+								<td class="column3">https://www.blizzard.com/pt-br/</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class='cchild child'>
+								<td class="column1">Senha:</td>
+								<td class="column2">200392</td>
+								<td class="column3">https://www.blizzard.com/pt-br/</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">Facebook</td>
+								<td class="column2">Pedro Polez</td>
+								<td class="column3">https://www.facebook.com/pedro.polez</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class="cchild child">
+								<td class="column1">Senha: </td>
+								<td class="column2">200390</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">Orkut</td>
+								<td class="column2">Polez</td>
+								<td class="column3">http://e-orkut.com</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class="cchild child">
+								<td class="column1">Senha: </td>
+								<td class="column2">200388</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">LevelUp</td>
+								<td class="column2">Sulunia</td>
+								<td class="column3">https://minhaconta.levelupgames.com.br/web</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class="cchild child">
+								<td class="column1">Senha: </td>
+								<td class="column2">200386</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">Osu</td>
+								<td class="column2">200389</td>
+								<td class="column3">https://osu.ppy.sh/home</td>
+								<td ><i class="fa fa-chevron-down"></i></td>
+							</tr> 
+							<tr class="cchild child">
+								<td class="column1">Senha: </td>
+								<td class="column2">200388</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
+							<tr class="parent">
+								<td class="column1">Google</td>
+								<td class="column2">200387</td>
+								<td class="column3">https://accounts.google.com/signin/v2/identifier</td>
+								<td ></td><i class="fa fa-chevron-down"></i></td>
+							</tr>
+							<tr class="cchild child">
+								<td class="column1">Senha: </td>
+								<td class="column2">200386</td>
+								<td class="column3">Obs: Descrição de Obserdação</td>
+								<td><button class="pillbutton" onclick="selectRegister()">Selecionar</button></td>
+							</tr>
 
 						</tbody>
 					</table>
+
+
 				</div>
 			</div>
 		</div>
@@ -197,15 +196,18 @@
 
 
 
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
+	<script src="js/table.js"></script>
+
 </body>
+
 </html>

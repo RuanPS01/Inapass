@@ -1,5 +1,10 @@
-('table').on('click', 'tr.parent .fa-chevron-down', function(){
-  $(this).closest('tbody').toggleClass('open');
+
+ 
+ $('table').on('click', '.parent', function(){
+//    $(this).next('.parent').toggleClass('cchild');
+    
+    var tr = document.querySelector(".child");
+    tr.classList.toggle("cchild");
 });
 
 
