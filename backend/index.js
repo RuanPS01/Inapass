@@ -112,18 +112,19 @@ server.get('/listEntry', function(req, res){
 //payload: json do doc a ser inserido no banco de dados
 server.post('/newEntry', function(req, res){
   console.log("New entry request. Generating database info..");
-  console.log(req.body);
   output = req.body
 
   //Todo: receive request as formatted body from frontend
-  build_input = {
-    "date": utils.generateDateString(),
-    "pwd": utils.generateString(),
-    "name":"AWebsite",
-    "description": "Senha do meu site"
-  }
+  //Example input:
+  //build_input = {
+  //  "date": utils.generateDateString(),
+  //  "pwd": utils.generateString(),
+  //  "name":"AWebsite",
+  //  "description": "Senha do meu site"
+  //}
+
   console.log('Dispatching.');
-  uuid = databasePUT(build_input);
+  uuid = databasePUT(output);
 
   res.send("OK");
 });
