@@ -1,6 +1,4 @@
-
- 
- $('table').on('click', '.parent', function(){
+$('table').on('click', '.parent', function(){
 //    $(this).next('.parent').toggleClass('cchild');
     
     var tr = document.querySelector(".child");
