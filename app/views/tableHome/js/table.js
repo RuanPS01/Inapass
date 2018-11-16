@@ -45,6 +45,21 @@ function getNewRegister(siteOrigem, nameUser, linkSite, senhaUser, descricao) { 
   var senhaUser = document.getElementById("site").textContent;
   var descricao = document.getElementById("site").textContent;
   
+  var payloadPadraoTabela = {
+      "siteOrigem": siteOrigem,
+      "senhaUser": senhaUser,
+      "description": descricao,
+      "siteOrigem": siteOrigem,
+      "linkSite": linkSite
+    }
+
+  var payload = {
+        "date": utils.generateDateString(),
+        "pwd": senhaUser,
+        "name": nameUser,
+        "description": descricao
+    }
+
   console.log("Site: "+siteOrigem);
   console.log("User: "+nameUser);
   console.log("Link: "+linkSite);
