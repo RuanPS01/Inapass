@@ -93,7 +93,7 @@ server.get('/listEntry', function(req, res){
   console.log('Database docs have been queried.');
   var docs;
 
-  axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb/_design/pwds/_view/all')
+  axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb/_design/all/_view/pwds')
   .then(function (response){
     console.log('[couchdb] Passbase requested!');
     var docs = response.data.rows;
