@@ -9,7 +9,7 @@ var utils = require('./utils')
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
 
-const bdAddr = "127.0.0.1:5984/";
+const bdAddr = "192.168.100.107:5984/";
 
 server.all('*',function(req,res,next)
 {
@@ -34,7 +34,7 @@ server.listen(3000, function (req, res) {
   console.log(`IRIS is operating in ${server.get('env')} mode at port 3000`)
   console.log("Checking DB connection...");
 
-  var rq = http.get("http://localhost:5984/passdb", function(res){
+  var rq = http.get("http://"+bdAddr+"passdb", function(res){
     console.log("DB status code: "+res.statusCode);
     if(res.statusCode !== 200){
       console.log("Database connection failed. Exiting..");
@@ -113,6 +113,7 @@ server.get('/listEntry', function(req, res){
 server.post('/newEntry', function(req, res){
   console.log("New entry request. Generating database info..");
   output = req.body
+  output.pwd = utils.generateString();
 
   //Todo: receive request as formatted body from frontend
   //Example input:
@@ -123,7 +124,7 @@ server.post('/newEntry', function(req, res){
   //  "description": "Senha do meu site"
   //}
 
-  console.log('Dispatching.');
+  console.log('Dispatching new object: %O', output);
   uuid = databasePUT(output);
 
   res.send("OK");
@@ -138,7 +139,7 @@ async function databasePUT(build_input){
       request({
         url: 'http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data.uuids[0],
         method: "PUT",
-        json: true,   // <--Very important!!!
+        json: true,   // <--- Very importante!!!
         body: build_input
       }, function (error, response, body){
         console.log('[couchdb]PUT response: '+response.body.ok);

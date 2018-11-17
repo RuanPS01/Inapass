@@ -5,7 +5,7 @@ module.exports = {
     var result = "";
 
     //pega 5 caracteres aleatórios
-    for (var i = 0; i < 5; i++)
+    for (var i = 0; i < 12; i++)
       result += charPossivel.charAt(Math.floor(Math.random() * charPossivel.length));
 
     return result;
