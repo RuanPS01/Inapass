@@ -35,12 +35,17 @@ function confirmation() {
   console.log("Confirmar? -> "+ txt);
 }
  
-function getNewRegister(siteOrigem, nameUser, linkSite, senhaUser, descricao) { /*change*/
+function getNewRegister() { /*change*/
   var siteOrigem = document.getElementById("site").textContent;
   var nameUser = document.getElementById("user").textContent;
   var linkSite = document.getElementById("linkSite").textContent;
   var senhaUser = document.getElementById("site").textContent;
   var descricao = document.getElementById("site").textContent;
+  console.log("Site: "+siteOrigem);
+  console.log("User: "+nameUser);
+  console.log("Link: "+linkSite);
+  console.log("Senha: "+senhaUser);
+  console.log("Descrição: "+descricao);
   
   var payloadPadraoTabela = {
       "siteOrigem": siteOrigem,
