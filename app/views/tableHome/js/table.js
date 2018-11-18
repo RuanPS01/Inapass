@@ -1,8 +1,5 @@
-$('table').on('click', '.parent', function(){
-//    $(this).next('.parent').toggleClass('cchild');
-    
-    var tr = document.querySelector(".child");
-    tr.classList.toggle("cchild");
+$('table').on('click', '.parent', function(){   
+    $(this).toggleClass('.child').nextUntil('.parent').slideToggle(30);
 });
 
 
