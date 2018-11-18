@@ -9,7 +9,8 @@ var utils = require('./utils')
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
 
-const bdAddr = "192.168.100.107:5984/";
+const bdAddr = "127.0.0.1:5984/";
+//const bdAddr = "192.168.100.107:5984/";
 
 server.all('*',function(req,res,next)
 {

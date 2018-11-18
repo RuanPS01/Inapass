@@ -2,6 +2,16 @@ $('table').on('click', '.parent', function(){
     $(this).toggleClass('.child').nextUntil('.parent').slideToggle(30);
 });
 
+/* String.prototype.hashCode = function() {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+}; */
 
 function openForm() {
   document.getElementById("myForm").style.display = "block";
@@ -36,37 +46,34 @@ function confirmation() {
 }
  
 function getNewRegister() { /*change*/
-  var siteOrigem = document.getElementById("site").textContent;
-  var nameUser = document.getElementById("user").textContent;
-  var linkSite = document.getElementById("linkSite").textContent;
-  var senhaUser = document.getElementById("site").textContent;
-  var descricao = document.getElementById("site").textContent;
+  var siteOrigem = document.getElementById("site").value;
+  var nameUser = document.getElementById("user").value;
+  var linkSite = document.getElementById("linkSite").value;
+  var senhaUser = document.getElementById("senhaUser").value;
+  var descricao = document.getElementById("descricao").value;
   console.log("Site: "+siteOrigem);
   console.log("User: "+nameUser);
   console.log("Link: "+linkSite);
-  console.log("Senha: "+senhaUser);
+  console.log("Senha: "+senhaUser);//.hashCode());
   console.log("Descrição: "+descricao);
-  
+
   var payloadPadraoTabela = {
       "siteOrigem": siteOrigem,
+      "nameUser": nameUser,
       "senhaUser": senhaUser,
-      "description": descricao,
-      "siteOrigem": siteOrigem,
+      "descricao": descricao,
       "linkSite": linkSite
     }
 
-  var payload = {
-        "date": utils.generateDateString(),
-        "pwd": senhaUser,
-        "name": nameUser,
-        "description": descricao
-    }
+  xhr = new XMLHttpRequest();
+  var url = "http://localhost:3000/newEntry";
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  //xhr.onreadystatechange = function () { }
+  var data = JSON.stringify(payloadPadraoTabela);
+  xhr.send(data);
 
-  console.log("Site: "+siteOrigem);
-  console.log("User: "+nameUser);
-  console.log("Link: "+linkSite);
-  console.log("Senha: "+senhaUser);
-  console.log("Descrição: "+descricao);
+
   var $content =  
   "<tr class='parent'>"+
     "<td class='column1'>"+siteOrigem+"</td>"+
@@ -80,6 +87,8 @@ function getNewRegister() { /*change*/
     "<td class='column3'>Obs: "+descricao+"</td>"+
     "<td></td>"+
   "</tr>";
+
+  //document.getElementById("Table").inserRow($content);
 };
 
 function selectRegister(){

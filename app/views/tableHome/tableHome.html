@@ -43,20 +43,20 @@
 				<div class="form-popup" id="myForm">
 					<form class="form-container">
 						<h2>Nova conta</h2>
-						<label id="site" ><b>Nome do site de Origem</b></label>
-						<input type="text" placeholder="Ex: Blizzard" required>
+						<label ><b>Nome do site de Origem</b></label>
+						<input id="site" type="text" placeholder="Ex: Blizzard" required>
 
-						<label id="linkSite"><b>Link do site de Origem</b></label>
-						<input type="text" placeholder="Ex: battle.net" required>
+						<label><b>Link do site de Origem</b></label>
+						<input id="linkSite" type="text" placeholder="Ex: battle.net" required>
 
-						<label id="user" ><b>Nome de Usuário</b></label>
-						<input type="text" placeholder="Ex: Sulunia" required>
+						<label><b>Nome de Usuário</b></label>
+						<input id="user" type="text" placeholder="Ex: Sulunia" required>
 
-						<label id="senhaUser"><b>Password</b></label>
-						<input type="password" placeholder="Ex: senha1234" required>
+						<label><b>Password</b></label>
+						<input id="senhaUser" type="password" placeholder="Ex: senha1234" required>
 
-						<label id="descricao" for="psw"><b>Descrição</b></label>
-						<input type="text" placeholder="Ex: Site de Jogos" required>
+						<label><b>Descrição</b></label>
+						<input id="descricao" type="text" placeholder="Ex: Site de Jogos" required>
 
 						<button type="button" class="btn" onclick="getNewRegister()">Cadastrar</button>
 						<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
@@ -86,7 +86,7 @@
 					</form>
 				</div>
 				<div>
-					<table class="table100">
+					<table id="Table" class="table100">
 						<thead>
 							<tr class="table100-head">
 								<th class="column1">Site Origem</th>
