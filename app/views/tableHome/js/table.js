@@ -49,7 +49,7 @@ function arrayListing(arr) {
   var out = "";
   console.log("Array: "+arr);
   var i;
-  for(i = 1; i < arr.length; i++) {
+  for(i = 0; i < arr.length; i++) {
     var id = arr[i].id;
     var siteOrigem = arr[i].key.siteOrigem;
     var nameUser = arr[i].key.nameUser;
