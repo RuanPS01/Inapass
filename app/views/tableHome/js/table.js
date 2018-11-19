@@ -215,7 +215,6 @@ function generateString() {
   //pega 5 caracteres aleatórios
   for (var i = 0; i < 12; i++)
     result += charPossivel.charAt(Math.floor(Math.random() * charPossivel.length));
-
   document.getElementById("senhaUser").value = result;
 };
 
