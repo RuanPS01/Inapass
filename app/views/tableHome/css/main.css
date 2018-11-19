@@ -503,16 +503,20 @@ PILL BUTTON
   border: none;
   color: black;
   padding: 7px 20px;
-  vertical-align: middle;
+  /* vertical-align: top; */
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   margin: 1px 1px;
   cursor: pointer;
-  border-radius: 6px;
+  /* border-radius: 6px; */
 }
 .pillbutton:hover {
-  background-color: #f1f1f1;
+  background-color: #e6e6e6;
+}
+
+.pillbutton:onclick {
+  background-color: #636363;
 }
 
 
@@ -543,14 +547,17 @@ TABLE
 
 
 .parent ~ .cchild {
+  
   background: #ddd;
-  /* height: 25px;  */
+  height: 50px; 
   display: none;
 }
 .open .parent ~ .cchild {
+  
   display: table-row;
 }
 .parent {
+  box-shadow: 0px 30px 90px 0px rgb(22, 13, 32);
   background: #f1f1f1;
   cursor: pointer;
 }

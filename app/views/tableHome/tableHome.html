@@ -58,7 +58,7 @@
 						<label><b>Descrição</b></label>
 						<input id="descricao" type="text" placeholder="Ex: Site de Jogos" required>
 
-						<button type="button" class="btn" onclick="getNewRegister()">Cadastrar</button>
+						<button type="button" class="btn" onclick="updateRegister()">Cadastrar</button>
 						<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
 					</form>
 				</div>
@@ -66,20 +66,20 @@
 				<div class="form-popup" id="myFormEdit">
 					<form class="form-container">
 						<h2>Edição de conta</h2>
-						<label id="site" for="email"><b>Nome do site de Origem</b></label>
-						<input type="text" placeholder="Ex: Blizzard" required>
+						<label><b>Nome do site de Origem</b></label>
+						<input id="siteEdit" type="text" placeholder="Ex: Blizzard" required></input>
 
-						<label id="site" for="email"><b>Link do site de Origem</b></label>
-						<input type="text" placeholder="Ex: battle.net" required>
+						<label><b>Link do site de Origem</b></label>
+						<input id="linkSiteEdit" type="text" placeholder="Ex: battle.net" required></input>
 
-						<label id="user" for="email"><b>Nome de Usuário</b></label>
-						<input type="text" placeholder="Ex: Sulunia" required>
+						<label><b>Nome de Usuário</b></label>
+						<input id="nameUserEdit" type="text" placeholder="Ex: Sulunia" required></input>
 
-						<label id="pass" for="psw"><b>Password</b></label>
-						<input type="password" placeholder="Ex: senha1234" required>
+						<label><b>Password</b></label>
+						<input id="senhaUserEdit" type="password" placeholder="Ex: senha1234" required></input>
 
-						<label id="pass" for="psw"><b>Descrição</b></label>
-						<input type="text" placeholder="Ex: Site de Jogos" required>
+						<label><b>Descrição</b></label>
+						<input id="descricaoEdit" type="text" placeholder="Ex: Site de Jogos" required></input>
 
 						<button type="submit" class="btn" onclick="getNewRegister()">Alterar</button>
 						<button type="button" class="btn cancel" onclick="closeFormEdit()">Fechar Janela</button>
@@ -95,7 +95,7 @@
 								<th class="column4"></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tbody">
 						</tbody>
 					</table>
 

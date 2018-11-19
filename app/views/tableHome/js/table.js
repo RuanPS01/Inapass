@@ -4,8 +4,17 @@ $('table').on('click', '.parent', function(){
 
 $(document).ready(function() {
   console.log("Ready!");
-  //listTable();
+  listTable();
 });
+
+var idGlobal = "";
+var siteOrigemGlobal = "";
+var nameUserGlobal = "";
+var linkSiteGlobal = "";
+var senhaUserGlobal = "";
+var descricaoGlobal = "";
+
+
 /* String.prototype.hashCode = function() {
   var hash = 0, i, chr;
   if (this.length === 0) return hash;
@@ -36,18 +45,26 @@ function listTable(){
 }
 
 function arrayListing(arr) {
+  //debugger;
   var out = "";
   console.log("Array: "+arr);
   var i;
-  for(i = 0; i < arr.length; i++) {
-    var siteOrigem = arr[i].siteOrigem;
-    var nameUser = arr[i].nameUser;
-    var linkSite = arr[i].linkSite;
-    var senhaUser = arr[i].senhaUser;
-    var descricao = arr[i].descricao;
+  for(i = 1; i < arr.length; i++) {
+    var id = arr[i].id;
+    var siteOrigem = arr[i].key.siteOrigem;
+    var nameUser = arr[i].key.nameUser;
+    var linkSite = arr[i].key.linkSite;
+    var senhaUser = arr[i].key.senhaUser;
+    var descricao = arr[i].key.descricao;
+    console.log("Site: "+siteOrigem);
+    console.log("User: "+nameUser);
+    console.log("Link: "+linkSite);
+    console.log("Senha: "+senhaUser);//.hashCode());
+    console.log("Descrição: "+descricao);
 
+    /////////////NEW ROW///////////////////////////
     var table = document.getElementById("Table");
-
+    var tbody = document.getElementById('tbody');
     var rowCount = table.rows.length;
     var newRow = table.insertRow(rowCount);
     newRow.className = "parent";
@@ -55,19 +72,23 @@ function arrayListing(arr) {
     var cell0_SiteOrigem = newRow.insertCell(0);
     cell0_SiteOrigem.innerHTML = '<td>'+siteOrigem+'</td>';
     cell0_SiteOrigem.className = 'column1';
+    cell0_SiteOrigem.id = 'site'+id;
   
     var cell1_NomeUsuario = newRow.insertCell(1);
     cell1_NomeUsuario.innerHTML = '<td>'+nameUser+'</td>';
     cell1_NomeUsuario.className = 'column2';
+    cell1_NomeUsuario.id = 'nameUser'+id;
   
     var cell2_Link = newRow.insertCell(2);
     cell2_Link.innerHTML = '<td>'+linkSite+'</td>';
     //cell2_Link.href = linkSite;
     cell2_Link.className = 'column3';
+    cell2_Link.id = 'linkSite'+id;
   
     var cell3_Blank= newRow.insertCell(3);
     cell3_Blank.innerHTML = '<td></td>';
     cell3_Blank.className = 'column4';
+    cell3_Blank.id = id;
   
     /////////////ROW CHILD///////////////////////////
     var newRowCHILD = table.insertRow(rowCount+1);
@@ -80,14 +101,16 @@ function arrayListing(arr) {
     var cell1_CHILD_Senha = newRowCHILD.insertCell(1);
     cell1_CHILD_Senha.innerHTML = '<td>'+senhaUser+'</td>';
     cell1_CHILD_Senha.className = 'column2';
+    cell1_CHILD_Senha.id = 'senhaUser'+id;
   
     var cell2_CHILD_Descr = newRowCHILD.insertCell(2);
     cell2_CHILD_Descr.innerHTML = '<td>Obs: '+descricao+'</td>';
     cell2_CHILD_Descr.className = 'column3';
+    cell2_CHILD_Descr.id = 'descricao'+id;
   
     var cell2_CHILD_Button = newRowCHILD.insertCell(3);
     cell2_CHILD_Button.innerHTML = '<td><button>Selecionar</button></td>';
-    cell2_CHILD_Button.setAttribute("onclick", "selectRegister()");
+    cell2_CHILD_Button.setAttribute("onclick", "selectRegister('"+id+"')");
     cell2_CHILD_Button.className = 'pillbutton';
   }
 }
@@ -98,7 +121,12 @@ function openForm() {
 }
 
 function openFormEdit() {
-  if(true){
+  if(siteOrigemGlobal !== ""){
+    document.getElementById("siteEdit").value = siteOrigemGlobal;
+    document.getElementById("linkSiteEdit").value = nameUserGlobal;
+    document.getElementById("nameUserEdit").value = linkSiteGlobal;
+    document.getElementById("senhaUserEdit").value = senhaUserGlobal;
+    document.getElementById("descricaoEdit").value = descricaoGlobal;
     document.getElementById("myFormEdit").style.display = "block";
   }else{
     alert("Selecione um cadastro!");
@@ -115,16 +143,27 @@ function closeForm() {
 
 function confirmation() {
   var txt;
-  var confirmar = confirm("Excluir cadastro?");
+  var confirmar = confirm("Excluir cadastro do site "+siteOrigemGlobal+"?");
   if (confirmar == true) {
-    txt = "You pressed OK!";
+    xhr = new XMLHttpRequest();
+    var url = "http://localhost:3000/deleteEntry?docId=("+idGlobal+")";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    var data = JSON.stringify(idGlobal);
+    xhr.send(data);
+    location.reload();
+    alert("Cadastro excluído");
   }else{
-    txt = "You pressed Cancel!";
+    txt = "Process canceled!";
   }
   console.log("Confirmar? -> "+ txt);
 }
- 
-function getNewRegister() { /*change*/
+
+function updateRegister(){
+
+}
+
+function getNewRegister() {
   var siteOrigem = document.getElementById("site").value;
   var nameUser = document.getElementById("user").value;
   var linkSite = document.getElementById("linkSite").value;
@@ -152,66 +191,19 @@ function getNewRegister() { /*change*/
   var data = JSON.stringify(payloadPadraoTabela);
   xhr.send(data);
 
-
-  ///////////NEW ROW///////////////////
-  var table = document.getElementById("Table");
-
-  var rowCount = table.rows.length;
-  var newRow = table.insertRow(rowCount);
-  newRow.className = "parent";
-
-  var cell0_SiteOrigem = newRow.insertCell(0);
-  cell0_SiteOrigem.innerHTML = '<td>'+siteOrigem+'</td>';
-  cell0_SiteOrigem.className = 'column1';
-
-  var cell1_NomeUsuario = newRow.insertCell(1);
-  cell1_NomeUsuario.innerHTML = '<td>'+nameUser+'</td>';
-  cell1_NomeUsuario.className = 'column2';
-
-  var cell2_Link = newRow.insertCell(2);
-  cell2_Link.innerHTML = '<td>'+linkSite+'</td>';
-  //cell2_Link.href = linkSite;
-  cell2_Link.className = 'column3';
-
-  var cell3_Blank= newRow.insertCell(3);
-  cell3_Blank.innerHTML = '<td></td>';
-  cell3_Blank.className = 'column4';
-
-  /////////////ROW CHILD///////////////////////////
-  var newRowCHILD = table.insertRow(rowCount+1);
-  newRowCHILD.className = "cchild child";
-  
-  var cell0_CHILD_Text = newRowCHILD.insertCell(0);
-  cell0_CHILD_Text.innerHTML = '<td>Senha:</td>';
-  cell0_CHILD_Text.className = 'column1';
-
-  var cell1_CHILD_Senha = newRowCHILD.insertCell(1);
-  cell1_CHILD_Senha.innerHTML = '<td>'+senhaUser+'</td>';
-  cell1_CHILD_Senha.className = 'column2';
-
-  var cell2_CHILD_Descr = newRowCHILD.insertCell(2);
-  cell2_CHILD_Descr.innerHTML = '<td>Obs: '+descricao+'</td>';
-  cell2_CHILD_Descr.className = 'column3';
-
-  var cell2_CHILD_Button = newRowCHILD.insertCell(3);
-  cell2_CHILD_Button.innerHTML = '<td><button>Selecionar</button></td>';
-  cell2_CHILD_Button.setAttribute("onclick", "selectRegister()");
-  cell2_CHILD_Button.className = 'pillbutton';
-
-  var $contentExample =  
-  "<tr class='parent'>"+
-    "<td class='column1'>"+siteOrigem+"</td>"+
-    "<td class='column2'>"+nameUser+"</td>"+
-    "<td href='"+linkSite+"' class='column3'>"+linkSite+"</td>"+
-  "</tr>"+
-  "<tr class='cchild'>"+
-    "<td class='column1'>Senha:</td>"+
-    "<td class='column2'>"+senhaUser+"</td>"+
-    "<td class='column3'>Obs: "+descricao+"</td>"+
-    "<td><button class='pillbutton' onclick='selectRegister()'>Selecionar</button></td>"+
-  "</tr>";
+  location.reload();
 };
 
-function selectRegister(){
-  console.log("SELECIONAR CADASTRO")
+function selectRegister(id){
+  console.log("CADASTRO SELECIONADO:")
+  //debugger;
+  var siteID = "site"+id;
+  idGlobal = id;
+  siteOrigemGlobal = document.getElementById(siteID).textContent;
+  nameUserGlobal = document.getElementById("nameUser"+id).textContent;
+  linkSiteGlobal = document.getElementById("linkSite"+id).textContent;
+  senhaUserGlobal = document.getElementById("senhaUser"+id).textContent;
+  descricaoGlobal = document.getElementById("descricao"+id).textContent;
+  alert("Cadastro do site "+ siteOrigemGlobal +" selecionado para edição ou exclusão!");
+  
 };
