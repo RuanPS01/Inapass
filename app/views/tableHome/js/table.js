@@ -207,3 +207,15 @@ function selectRegister(id){
   alert("Cadastro do site "+ siteOrigemGlobal +" selecionado para edição ou exclusão!");
   
 };
+
+function generateString() {
+  var charPossivel = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoçâãõÚúóéáñpqrstuvwxyz0123456789";
+  var result = "";
+
+  //pega 5 caracteres aleatórios
+  for (var i = 0; i < 12; i++)
+    result += charPossivel.charAt(Math.floor(Math.random() * charPossivel.length));
+
+  document.getElementById("senhaUser").value = result;
+};
+

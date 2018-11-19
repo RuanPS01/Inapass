@@ -53,7 +53,15 @@
 						<input id="user" type="text" placeholder="Ex: Sulunia" required>
 
 						<label><b>Password</b></label>
-						<input id="senhaUser" type="password" placeholder="Ex: senha1234" required>
+						<table>
+							<tbody>
+								<tr class="tableSenha">
+										<th class="senhaInput"><input class="senhaInputBox" id="senhaUser" type="text" placeholder="Ex: senha1234" required ></input></th>
+										<th class="senhaButton"><button type="button" class="generatebutton" onclick="generateString()">Gerar senha</button></th>
+									</tr>
+							</tbody>
+						</table>
+						
 
 						<label><b>Descrição</b></label>
 						<input id="descricao" type="text" placeholder="Ex: Site de Jogos" required>
@@ -77,7 +85,7 @@
 
 						<label><b>Password</b></label>
 						<input id="senhaUserEdit" type="password" placeholder="Ex: senha1234" required></input>
-
+						
 						<label><b>Descrição</b></label>
 						<input id="descricaoEdit" type="text" placeholder="Ex: Site de Jogos" required></input>
 
