@@ -74,23 +74,65 @@ function getNewRegister() { /*change*/
   xhr.send(data);
 
 
-  var $content =  
+  ///////////NEW ROW///////////////////
+  var table = document.getElementById("Table");
+
+  var rowCount = table.rows.length;
+  var newRow = table.insertRow(rowCount);
+  newRow.className = "parent";
+
+  var cell0_SiteOrigem = newRow.insertCell(0);
+  cell0_SiteOrigem.innerHTML = '<td>'+siteOrigem+'</td>';
+  cell0_SiteOrigem.className = 'column1';
+
+  var cell1_NomeUsuario = newRow.insertCell(1);
+  cell1_NomeUsuario.innerHTML = '<td>'+nameUser+'</td>';
+  cell1_NomeUsuario.className = 'column2';
+
+  var cell2_Link = newRow.insertCell(2);
+  cell2_Link.innerHTML = '<td>'+linkSite+'</td>';
+  //cell2_Link.href = linkSite;
+  cell2_Link.className = 'column3';
+
+  var cell3_Blank= newRow.insertCell(3);
+  cell3_Blank.innerHTML = '<td></td>';
+  cell3_Blank.className = 'column4';
+
+  /////////////ROW CHILD///////////////////////////
+  var newRowCHILD = table.insertRow(rowCount+1);
+  newRowCHILD.className = "cchild child";
+  
+  var cell0_CHILD_Text = newRowCHILD.insertCell(0);
+  cell0_CHILD_Text.innerHTML = '<td>Senha:</td>';
+  cell0_CHILD_Text.className = 'column1';
+
+  var cell1_CHILD_Senha = newRowCHILD.insertCell(1);
+  cell1_CHILD_Senha.innerHTML = '<td>'+senhaUser+'</td>';
+  cell1_CHILD_Senha.className = 'column2';
+
+  var cell2_CHILD_Descr = newRowCHILD.insertCell(2);
+  cell2_CHILD_Descr.innerHTML = '<td>Obs: '+descricao+'</td>';
+  cell2_CHILD_Descr.className = 'column3';
+
+  var cell2_CHILD_Button = newRowCHILD.insertCell(3);
+  cell2_CHILD_Button.innerHTML = '<td><button>Selecionar</button></td>';
+  cell2_CHILD_Button.setAttribute("onclick", "selectRegister()");
+  cell2_CHILD_Button.className = 'pillbutton';
+
+  var $contentExample =  
   "<tr class='parent'>"+
     "<td class='column1'>"+siteOrigem+"</td>"+
     "<td class='column2'>"+nameUser+"</td>"+
     "<td href='"+linkSite+"' class='column3'>"+linkSite+"</td>"+
-    "<td onclick='expand()'><i class='fa fa-chevron-down'></i></td>"+
   "</tr>"+
   "<tr class='cchild'>"+
     "<td class='column1'>Senha:</td>"+
     "<td class='column2'>"+senhaUser+"</td>"+
     "<td class='column3'>Obs: "+descricao+"</td>"+
-    "<td></td>"+
+    "<td><button class='pillbutton' onclick='selectRegister()'>Selecionar</button></td>"+
   "</tr>";
-
-  //document.getElementById("Table").inserRow($content);
 };
 
 function selectRegister(){
-
+  console.log("SELECIONAR CADASTRO")
 };
