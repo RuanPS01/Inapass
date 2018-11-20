@@ -9,8 +9,8 @@ var utils = require('./utils')
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
 
-const bdAddr = "127.0.0.1:5984/";
-//const bdAddr = "192.168.100.107:5984/";
+//const bdAddr = "127.0.0.1:5984/";
+const bdAddr = "192.168.100.107:5984/";
 
 server.all('*',function(req,res,next)
 {
@@ -77,7 +77,9 @@ server.post('/updateEntry', function(req, res){
   var recData = req.body
   axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+req.query.docId)
   .then(function (response) {
-    axios.put('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data._id, {recData, '_rev':response.data._rev})
+    recData._rev = response.data._rev;
+
+    axios.put('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data._id, recData)
     .then(function (response){
       console.log("[couchdb]Succesfully updated document!");
     })
