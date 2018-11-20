@@ -159,11 +159,18 @@ function confirmation() {
 
 function updateRegister(){
   debugger;
-  siteOrigemEdit = document.getElementById("siteEdit").value;
-  nameUserEdit = document.getElementById("nameUserEdit").value;
-  senhaUserEdit = document.getElementById("senhaUserEdit").value;
-  descricaoEdit = document.getElementById("descricaoEdit").value;
-  linkSiteEdit = document.getElementById("linkSiteEdit").value;
+  var siteOrigemEdit = document.getElementById("siteEdit").value;
+  var nameUserEdit = document.getElementById("nameUserEdit").value;
+  var senhaUserEdit = document.getElementById("senhaUserEdit").value;
+  var descricaoEditAUX = document.getElementById("descricaoEdit").value;
+  var linkSiteEdit = document.getElementById("linkSiteEdit").value;
+  
+  if(descricaoEditAUX.indexOf("Obs: ") != -1){
+    resultado = descricaoEditAUX.split(": ");
+    descricaoEdit = resultado[1];
+  }else{
+    descricaoEdit = descricaoEditAUX;
+  }
 
   var payloadPadraoTabela = {
       "siteOrigem": siteOrigemEdit,
@@ -180,6 +187,8 @@ function updateRegister(){
   //xhr.onreadystatechange = function () { }
   var data = JSON.stringify(payloadPadraoTabela);
   xhr.send(data);
+  
+  location.reload();
   location.reload();
 }
 
