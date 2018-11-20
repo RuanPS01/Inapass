@@ -78,7 +78,6 @@ server.post('/updateEntry', function(req, res){
   axios.get('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+req.query.docId)
   .then(function (response) {
     recData._rev = response.data._rev;
-
     axios.put('http://'+credentials.name+':'+credentials.password+'@'+bdAddr+'/passdb'+'/'+response.data._id, recData)
     .then(function (response){
       console.log("[couchdb]Succesfully updated document!");
