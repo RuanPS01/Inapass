@@ -161,6 +161,22 @@ function confirmation() {
 
 function updateRegister(){
 
+  var payloadPadraoTabela = {
+      "id": idGlobal,
+      "siteOrigem": siteOrigemGlobal,
+      "nameUser": nameUserGlobal,
+      "senhaUser": senhaUserGlobal,
+      "descricao": descricaoGlobal,
+      "linkSite": linkSiteGlobal
+    }
+
+  xhr = new XMLHttpRequest();
+  var url = "http://localhost:3000/updateEntry";
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  //xhr.onreadystatechange = function () { }
+  var data = JSON.stringify(payloadPadraoTabela);
+  xhr.send(data);
 }
 
 function getNewRegister() {
@@ -212,7 +228,7 @@ function generateString() {
   var charPossivel = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoçâãõÚúóéáñpqrstuvwxyz0123456789";
   var result = "";
 
-  //pega 5 caracteres aleatórios
+  //pega 12 caracteres aleatórios
   for (var i = 0; i < 12; i++)
     result += charPossivel.charAt(Math.floor(Math.random() * charPossivel.length));
   document.getElementById("senhaUser").value = result;
