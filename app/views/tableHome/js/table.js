@@ -161,22 +161,23 @@ function confirmation() {
 }
 
 function updateRegister(){
+  debugger;
   var payloadPadraoTabela = {
-      "id": idGlobal,
       "siteOrigem": siteOrigemGlobal,
       "nameUser": nameUserGlobal,
       "senhaUser": senhaUserGlobal,
       "descricao": descricaoGlobal,
       "linkSite": linkSiteGlobal
-    }
+  }
 
   xhr = new XMLHttpRequest();
-  var url = "http://localhost:3000/updateEntry";
+  var url = "http://localhost:3000/updateEntry?docId="+idGlobal;
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   //xhr.onreadystatechange = function () { }
   var data = JSON.stringify(payloadPadraoTabela);
   xhr.send(data);
+  location.reload();
 }
 
 function getNewRegister() {
@@ -198,7 +199,7 @@ function getNewRegister() {
       "descricao": descricao,
       "linkSite": linkSite
     }
-
+  //debugger;
   xhr = new XMLHttpRequest();
   var url = "http://localhost:3000/newEntry";
   xhr.open("POST", url, true);
@@ -232,5 +233,6 @@ function generateString() {
   for (var i = 0; i < 12; i++)
     result += charPossivel.charAt(Math.floor(Math.random() * charPossivel.length));
   document.getElementById("senhaUser").value = result;
+  document.getElementById("senhaUserEdit").value = result;
 };
 
