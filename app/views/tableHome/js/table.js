@@ -146,7 +146,7 @@ function confirmation() {
   var confirmar = confirm("Excluir cadastro do site "+siteOrigemGlobal+"?");
   if (confirmar == true) {
     xhr = new XMLHttpRequest();
-    var url = "http://localhost:3000/deleteEntry?docId=("+idGlobal+")";
+    var url = "http://localhost:3000/deleteEntry?docId="+idGlobal;
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     var data = JSON.stringify(idGlobal);
@@ -160,7 +160,6 @@ function confirmation() {
 }
 
 function updateRegister(){
-
   var payloadPadraoTabela = {
       "id": idGlobal,
       "siteOrigem": siteOrigemGlobal,
