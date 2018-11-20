@@ -149,11 +149,8 @@ function confirmation() {
     var url = "http://localhost:3000/deleteEntry?docId="+idGlobal;
     xhttp.open("POST", url, true);
     xhttp.send();
-    //var data = JSON({ "data": "yes"});
     location.reload();
     alert("Cadastro excluído");
-    xhttp.open("POST", "demo_post.asp", true);
-    xhttp.send();
   }else{
     txt = "Process canceled!";
   }
@@ -162,12 +159,18 @@ function confirmation() {
 
 function updateRegister(){
   debugger;
+  siteOrigemEdit = document.getElementById("siteEdit").value;
+  nameUserEdit = document.getElementById("nameUserEdit").value;
+  senhaUserEdit = document.getElementById("senhaUserEdit").value;
+  descricaoEdit = document.getElementById("descricaoEdit").value;
+  linkSiteEdit = document.getElementById("linkSiteEdit").value;
+
   var payloadPadraoTabela = {
-      "siteOrigem": siteOrigemGlobal,
-      "nameUser": nameUserGlobal,
-      "senhaUser": senhaUserGlobal,
-      "descricao": descricaoGlobal,
-      "linkSite": linkSiteGlobal
+      "siteOrigem": siteOrigemEdit,
+      "nameUser": nameUserEdit,
+      "senhaUser": senhaUserEdit,
+      "descricao": descricaoEdit,
+      "linkSite": linkSiteEdit,
   }
 
   xhr = new XMLHttpRequest();
