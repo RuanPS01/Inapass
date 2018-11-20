@@ -145,14 +145,15 @@ function confirmation() {
   var txt;
   var confirmar = confirm("Excluir cadastro do site "+siteOrigemGlobal+"?");
   if (confirmar == true) {
-    xhr = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest();
     var url = "http://localhost:3000/deleteEntry?docId="+idGlobal;
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    var data = JSON.stringify(idGlobal);
-    xhr.send(data);
+    xhttp.open("POST", url, true);
+    xhttp.send();
+    //var data = JSON({ "data": "yes"});
     location.reload();
     alert("Cadastro excluído");
+    xhttp.open("POST", "demo_post.asp", true);
+    xhttp.send();
   }else{
     txt = "Process canceled!";
   }
