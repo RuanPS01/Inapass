@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>TableTest</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<!--===============================================================================================-->
+</head>
+
+<body>
+	<div id='cssmenu'>
+		<ul>
+			<li class='active' onclick="listTable()"><a href='#'>Tabela Principal</a></li>
+			<li><a href='about.html'>Sobre</a></li>
+			<li><a href='../index.html'>Sair</a></li>
+		</ul>
+	</div>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<button class="button" onclick="openForm()"><span>Cadastrar </span></button>
+				<button class="button" onclick="openFormEdit()"><span>Editar </span></button>
+				<button class="button" onclick="confirmation()"><span>Excluir </span></button>
+
+				<div class="form-popup" id="myForm">
+					<form class="form-container">
+						<h2>Nova conta</h2>
+						<label ><b>Nome do site de Origem</b></label>
+						<input id="site" type="text" placeholder="Ex: Blizzard" required>
+
+						<label><b>Link do site de Origem</b></label>
+						<input id="linkSite" type="text" placeholder="Ex: battle.net" required>
+
+						<label><b>Nome de Usuário</b></label>
+						<input id="user" type="text" placeholder="Ex: Sulunia" required>
+
+						<label><b>Password</b></label>
+						<table>
+							<tbody>
+								<tr class="tableSenha">
+									<th class="senhaInput"><input  id="senhaUser" class="senhaInputBox" type="text" placeholder="Ex: senha1234" required ></input></th>
+									<th class="senhaButton"><button type="button" class="generatebutton" onclick="generateString()">Gerar senha</button></th>
+								</tr>
+							</tbody>
+						</table>
+						<label><b>Descrição</b></label>
+						<input id="descricao" type="text" placeholder="Ex: Site de Jogos" required>
+
+						<button type="button" class="btn" onclick="getNewRegister()">Cadastrar</button>
+						<button type="button" class="btn cancel" onclick="closeForm()">Fechar Janela</button>
+					</form>
+				</div>
+
+				<div class="form-popup" id="myFormEdit">
+					<form class="form-container">
+						<h2>Edição de conta</h2>
+						<label><b>Nome do site de Origem</b></label>
+						<input id="siteEdit" type="text" placeholder="Ex: Blizzard" required></input>
+
+						<label><b>Link do site de Origem</b></label>
+						<input id="linkSiteEdit" type="text" placeholder="Ex: battle.net" required></input>
+
+						<label><b>Nome de Usuário</b></label>
+						<input id="nameUserEdit" type="text" placeholder="Ex: Sulunia" required></input>
+
+						<label><b>Password</b></label>
+						<table>
+							<tbody>
+								<tr class="tableSenha">
+										<th class="senhaInput"><input id="senhaUserEdit" class="senhaInputBox" type="text" placeholder="Ex: senha1234" required ></input></th>
+										<th class="senhaButton"><button type="button" class="generatebutton" onclick="generateString()">Gerar senha</button></th>
+									</tr>
+							</tbody>
+						</table>	
+						<label><b>Descrição</b></label>
+						<input id="descricaoEdit" type="text" placeholder="Ex: Site de Jogos" required></input>
+
+						<button type="submit" class="btn" onclick="updateRegister()">Alterar</button>
+						<button type="button" class="btn cancel" onclick="closeFormEdit()">Fechar Janela</button>
+					</form>
+				</div>
+				<div>
+					<table id="Table" class="table100">
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Site Origem</th>
+								<th class="column2">Nome de Usuário</th>
+								<th class="column3">Link</th>
+								<th class="column4"></th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	<script src="js/table.js"></script>
+
+</body>
+
+</html>

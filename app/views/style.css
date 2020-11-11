@@ -100,7 +100,7 @@ body .login {
   margin: auto;
   top: 0;
   bottom: 0;
-  padding: 100px 40px 40px 40px;
+  padding:40px 40px 90px 40px;
   background: #35394a;
   /* Old browsers */
   /* FF3.6+ */
@@ -128,9 +128,17 @@ body .login .disclaimer {
 }
 body .login_title {
   color: #afb1be;
-  height: 60px;
+  height: 90px;
   text-align: left;
-  font-size: 16px;
+  font-size: 26px;
+  font-family: "Inversionz";
+}
+
+body .title_text{
+  color: #afb1be;
+  height: 25px;
+  text-align: left;
+  font-size: 12px;
 }
 body .login_fields {
   height: 208px;
